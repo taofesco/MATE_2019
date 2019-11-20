@@ -41,6 +41,8 @@ String disabledCommand = ":1500;1500;1500;1500;1500;1500;1500;1500;1500;1500;0";
 
 void setup()
 {
+  delay(3000);
+  
   Wire.begin();
   Serial1.begin(115200);
   Serial1.setTimeout(80);
@@ -63,6 +65,9 @@ void setup()
 //  wristTwist.attach(11);
 
   pinMode(buzzer, OUTPUT);
+  pinMode(water1, INPUT);
+  pinMode(water2, INPUT);
+  pinMode(water3, INPUT);
   pinMode(water4, INPUT);
 
   FR.writeMicroseconds(MOTOR_NEUTRAL);
@@ -76,12 +81,7 @@ void setup()
 
   // Scream untill IMU connected
   digitalWrite(buzzer, 1);
-  if (!imu.begin())
-  {
-    while(1)
-    {
-    }
-  }
+  while (!imu.begin());
   digitalWrite(buzzer, 0);
 }
 
